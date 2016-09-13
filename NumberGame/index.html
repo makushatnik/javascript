@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Number guessing game</title>
+
+<link rel="stylesheet" href="css/style.css"/>
+
+<div id="stage">
+	<div id="scale"></div>
+	<div id="arrow"></div>
+</div>
+
+<p id="output">I'm thinking of a number between 1 and 100.</p>
+<input id="input" type="text" placeholder="Enter your guess..." autofocus />
+<button>guess</button><br>
+<button onclick="reset()">reset</button>
+
+<script type="text/javascript">
+	//Game variables
+	var mysteryNumber = Math.ceil(Math.random() * 100);
+	var playerGuess = 0;
+	var guessesRemaining = 10;
+	var guessesMade = 0;
+	var gameState = "";
+	var gameWon = false;
+	//Input and output
+	var input = document.querySelector("#input");
+	var output = document.querySelector("#output");
+	//The button
+	var button = document.querySelector("button");
+	button.style.cursor = "pointer";
+	button.addEventListener("click", clickHandler, false);
+	//Enter key
+	window.addEventListener("keydown", keydownHandler, false);
+
+	function reset() {
+		mysteryNumber = Math.ceil(Math.random() * 100);
+		playerGuess = 0;
+		guessesRemaining = 10;
+		guessesMade = 0;
+		gameState = "";
+		gameWon = false;
+
+		arrow.style.left = "0px";
+		input.disabled = false;
+		input.value = "";
+		output.innerHTML = "I'm thinking of a number between 1 and 100.";
+
+		button.disabled = false;
+		button.addEventListener("click", clickHandler, false);
+		//Enter key
+		window.addEventListener("keydown", keydownHandler, false);
+	}
+
+	function render() {
+		//Multiply on 3 to find the correct position
+		arrow.style.left = playerGuess * 3 + "px";
+	}
+
+	function clickHandler() {
+		if (validateInput()) playGame();
+	}
+
+	function keydownHandler(e) {
+		if (e.keyCode === 13) {
+			if (validateInput()) playGame();
+		}
+	}
+	function validateInput() {
+		playerGuess = parseInt(input.value);
+		if (isNaN(playerGuess)) {
+			output.innerHTML = "Please, enter a number.";
+			return false;
+		} else if (playerGuess < 1 || playerGuess > 100) {
+			output.innerHTML = "Please, enter a number from 1 to 100.";
+			return false;
+		}
+		return true;
+	}
+
+	function playGame() {
+		guessesRemaining -= 1;
+		guessesMade += 1;
+		gameState = " Guess: " + guessesMade + ", Remaining: " + guessesRemaining;
+
+		
+		if (playerGuess > mysteryNumber) {
+			output.innerHTML = "That's too high." + gameState;
+			//Check for the end of game
+			if (guessesRemaining < 1) {
+				endGame();
+			}
+		} else if (playerGuess < mysteryNumber) {
+			output.innerHTML = "That's too low." + gameState;
+			//Check for the end of game
+			if (guessesRemaining < 1) {
+				endGame();
+			}
+		} else if (playerGuess === mysteryNumber) {
+			gameWon = true;
+			endGame();
+		}
+		//Update the graphics display
+		render();
+	}
+
+	function endGame() {
+		if (gameWon) {
+			output.innerHTML = "Yes, it's " + mysteryNumber + "!<br>It only took you " + guessesMade + " guesses.";
+		} else {
+			output.innerHTML = "No more guesses left!<br>The number was: " + mysteryNumber + ".";
+		}
+		//Disable the button
+		button.removeEventListener("click", clickHandler, false);
+		button.disabled = true;
+		//Disable the enter key
+		window.removeEventListener("keydown", keydownHandler, false);
+		//Disable the input field
+		input.disabled = true;
+	}
+</script>
