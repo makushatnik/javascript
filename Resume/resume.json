@@ -1,0 +1,66 @@
+{
+	"bio": {
+		"name": "Evgeny Ageev",
+		"role": "Java, Web Developer, Database Engineer",
+		"message": "Do you love programming like I do?",
+		"imgUrl": "images/me.jpg",
+		"contacts": {
+			"mobile": "+7 (951) 527-50-52",
+			"email": "makushatnik@yandex.ru",
+			"github": "http://github.com/makushatnik/",
+			"twitter": "http://twitter.com/",
+			"location": "Rostov On Don"
+		},
+		"skills": ["Java", "PHP", "Laravel", "JavaScript", "Node.js", "Oracle", "MongoDB"]
+	},
+
+	"work": [
+		{
+			"employer": "Free-lance",
+			"title": "Free-lancer",
+			"location": "Rostov On Don, Communisticheskii pr, 43",
+			"dates": "2008-2009",
+			"description": "Worked like a back-end developer w PHP & MySQL",
+			"url": "http://freelance.ru"
+		},
+		{
+			"employer": "IIS Consulting",
+			"title": "Oracle Developer",
+			"location": "Rostov On Don, Moskovskaja str, 53",
+			"dates": "15.07.2015 - 15.10.2015",
+			"description": "Oracle PL\\SQL development, team work, database warehouses transmitions (ETL)",
+			"url": "http://oracle.com"
+		}
+	],
+
+	"projects" : [
+		{
+			"title": "Business Card",
+			"dates": "2016",
+			"url": "http://github.com/makushatnik/DevIntensive",
+			"description": "My mobile Business Card",
+			"images": ["images/proj1.jpg","images/cat.jpg"]
+		}
+	],
+
+	"education" : {
+		"schools": [
+			{
+				"name": "South State University",
+				"degree": "Applied Mathematics & Informatics",
+				"location": "Rostov On Don, Zorge str, 5",
+				"dates": "2001-2005",
+				"url": "http://sfedu.ru",
+				"majors": ["mechanical","mathematical","programming"]
+			}
+		],
+		"cources": [
+			{
+				"title": "MongoDB for Java Developers",
+				"school": "MongoDB University",
+				"dates": "2016",
+				"url": "http://mongodb.com/"
+			}
+		]
+	}
+}
